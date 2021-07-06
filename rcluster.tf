@@ -15,9 +15,8 @@ resource "null_resource" "controlplane_provision" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo apt update",
-      "sudo apt install -y docker.io",
-      "sudo usermod -aG docker ubuntu",
+      "curl -sfL https://releases.rancher.com/install-docker/20.10.sh | sh -",
+      "sudo usermod -aG docker ${var.controlplane[count.index].ssh_user}",
       "${rancher2_cluster.app_cluster.cluster_registration_token.0.node_command} --controlplane --etcd"
     ]
   }
@@ -36,9 +35,8 @@ resource "null_resource" "workers_provision" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo apt update",
-      "sudo apt install -y docker.io",
-      "sudo usermod -aG docker ubuntu",
+      "curl -sfL https://releases.rancher.com/install-docker/20.10.sh | sh -",
+      "sudo usermod -aG docker ${var.workers[count.index].ssh_user}",
       "${rancher2_cluster.app_cluster.cluster_registration_token.0.node_command} --worker"
     ]
   }

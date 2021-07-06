@@ -13,7 +13,7 @@ This approach corresponds to the one described in [these Rancher documentation p
 ## Pre-requisites
 In order for this Terraform module to run correctly, you need a number of machines with a pre-defined number destined to be control plane nodes and a pre-defined number destined to be worker nodes.
 
-In its current version, these nodes must be Ubuntu-based. In fact, this configuration was only tested on Ubuntu 20.04 nodes. Any contribution in this regards would be appreciated. If your machines are based on another Linux distribution, please do not hesitate to fork this repository and do the necessary modifications in the file [rcluster.tf](./rcluster.tf#38) under the `provisioner` section in each `null_resource` resource.
+Now, the nodes can be Ubuntu, CentOS or some other distribution. However, this configuration was only tested on Ubuntu 20.04 and CentOS 7.9 nodes. Any contribution in this regards would be appreciated. If your machines are based on another Linux distribution, please do not hesitate to fork this repository and do the necessary modifications in the file [rcluster.tf](./rcluster.tf#38) under the `provisioner` section in each `null_resource` resource.
 
 The following data is necessary as an input to this module:
 - API URL for accessing Rancher, e.g. https://rancher.my.domain/v3/
